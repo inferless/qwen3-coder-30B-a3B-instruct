@@ -1,5 +1,10 @@
 # Template - Deploy Qwen3-Coder-30B-A3B-Instruct using Inferless 
-Qwen3-Coder-30B-A3B-Instruct is Alibaba's code generation model designed for advanced programming tasks. With 30 billion parameters, this model excels at code generation, debugging, code explanation, and programming problem-solving across multiple programming languages. It's specifically fine-tuned for instruction-following in coding scenarios.
+Qwen3-Coder-30B-A3B-Instruct is an open-source, 30.5B-parameter Mixture-of-Experts (MoE) large language model built by Alibaba Cloud’s Qwen team and purpose-tuned for code generation and agentic tool use.
+
+Its **A3B** configuration activates only 3.3B weights, 8 of 128 experts—during inference, enabling throughput comparable to models one-tenth its total size while scoring ≈94 % pass@1 on HumanEval and other coding suites.
+Native support for a 256k token context window (extendable to 1M tokens with YaRN) lets the model reason across whole repositories or lengthy chats without chunking.
+
+Its chat template natively understands JSON tool definitions, enabling reliable function invocation in agent frameworks. The model has been released under the permissive Apache-2.0 license, the model can be freely integrated into commercial workflows.
 
 
 ## TL;DR:
