@@ -1,4 +1,5 @@
-import os, torch, inferless
+import torch
+import os, inferless
 from typing import Optional
 from pydantic import BaseModel, Field
 from transformers import AutoModelForCausalLM, AutoTokenizer
