@@ -8,7 +8,7 @@ os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "1"
 @inferless.request
 class RequestObjects(BaseModel):
     prompt: str = Field(default="Write a quick sort algorithm.")
-    system_prompt: Optional[str] = "You are an amazing"
+    system_prompt: Optional[str] = "You are a coding expert"
     max_new_tokens: Optional[int] = 100
     temperature: Optional[float] = 0.1
     top_p: Optional[float] = 1.0
@@ -70,3 +70,4 @@ class InferlessPythonModel:
         return ResponseObjects(generated_text=content)
 
     def finalize(self):
+        self.model = None
