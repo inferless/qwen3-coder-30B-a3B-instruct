@@ -33,14 +33,9 @@ class InferlessPythonModel:
 
     def infer(self, inputs: RequestObjects) -> ResponseObjects:
         # Prepare messages
-        messages = []
-        
-        # Add system prompt if provided
-        if inputs.system_prompt:
-            messages.append({"role": "system", "content": inputs.system_prompt})
-        
-        # Add user prompt
-        messages.append({"role": "user", "content": inputs.prompt})
+        messages = [{"role": "system", "content": inputs.system_prompt},
+                    {"role": "user", "content": inputs.prompt}
+                   ]
         
         # Apply chat template
         text = self.tokenizer.apply_chat_template(
