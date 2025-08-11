@@ -26,6 +26,13 @@ class ResponseObjects(BaseModel):
 
 class InferlessPythonModel:
     def initialize(self):
+        dump_environment_info()
+        
+        # Dump HF_XET environment variables
+        for key, value in os.environ.items():
+          if key.startswith("HF_XET"):
+            print(f"{key}={value}")
+
         model_name = "Qwen/Qwen3-Coder-30B-A3B-Instruct"
         
         # Load the tokenizer and the model
@@ -36,12 +43,6 @@ class InferlessPythonModel:
             device_map="cuda"
         )
         # Dump environment info to the console
-        dump_environment_info()
-        
-        # Dump HF_XET environment variables
-        for key, value in os.environ.items():
-          if key.startswith("HF_XET"):
-            print(f"{key}={value}")
 
     def infer(self, inputs: RequestObjects) -> ResponseObjects:
         # Prepare messages
