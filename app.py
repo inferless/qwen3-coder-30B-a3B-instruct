@@ -7,6 +7,10 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 os.environ["HF_HUB_ENABLE_HF_TRANSFER"]=0
 os.environ["HF_HUB_DISABLE_XET"]=1
 
+from huggingface_hub import dump_environment_info
+
+
+
 @inferless.request
 class RequestObjects(BaseModel):
     prompt: str = Field(default="Write a quick sort algorithm.")
@@ -31,6 +35,13 @@ class InferlessPythonModel:
             torch_dtype="auto",
             device_map="cuda"
         )
+        # Dump environment info to the console
+        dump_environment_info()
+        
+        # Dump HF_XET environment variables
+        for key, value in os.environ.items():
+          if key.startswith("HF_XET"):
+            print(f"{key}={value}")
 
     def infer(self, inputs: RequestObjects) -> ResponseObjects:
         # Prepare messages
