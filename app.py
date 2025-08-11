@@ -4,8 +4,8 @@ from typing import Optional
 from pydantic import BaseModel, Field
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-os.environ["HF_HUB_ENABLE_HF_TRANSFER"]=0
-os.environ["HF_HUB_DISABLE_XET"]=1
+os.environ["HF_HUB_ENABLE_HF_TRANSFER"]="0"
+os.environ["HF_HUB_DISABLE_XET"]="1"
 
 from huggingface_hub import dump_environment_info
 
