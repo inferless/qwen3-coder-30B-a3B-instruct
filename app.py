@@ -4,6 +4,9 @@ from typing import Optional
 from pydantic import BaseModel, Field
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+os.environ["HF_HUB_ENABLE_HF_TRANSFER"]=0
+os.environ["HF_HUB_DISABLE_XET"]=1
+
 @inferless.request
 class RequestObjects(BaseModel):
     prompt: str = Field(default="Write a quick sort algorithm.")
