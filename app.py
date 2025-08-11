@@ -29,6 +29,7 @@ class InferlessPythonModel:
         dump_environment_info()
         
         # Dump HF_XET environment variables
+        print("HERE IS THE INFO","**"*20)
         for key, value in os.environ.items():
           if key.startswith("HF_XET"):
             print(f"{key}={value}")
