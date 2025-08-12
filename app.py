@@ -4,13 +4,6 @@ from typing import Optional
 from pydantic import BaseModel, Field
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-os.environ["HF_HUB_ENABLE_HF_TRANSFER"]="0"
-os.environ["HF_HUB_DISABLE_XET"]="1"
-
-from huggingface_hub import dump_environment_info
-
-
-
 @inferless.request
 class RequestObjects(BaseModel):
     prompt: str = Field(default="Write a quick sort algorithm.")
@@ -26,17 +19,7 @@ class ResponseObjects(BaseModel):
 
 class InferlessPythonModel:
     def initialize(self):
-        dump_environment_info()
-        
-        # Dump HF_XET environment variables
-        print("HERE IS THE INFO","**"*20)
-        for key, value in os.environ.items():
-          if key.startswith("HF_XET"):
-            print(f"{key}={value}")
-
         model_name = "Qwen/Qwen3-Coder-30B-A3B-Instruct"
-        
-        # Load the tokenizer and the model
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(
             model_name,
